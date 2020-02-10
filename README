@@ -1,0 +1,26 @@
+Musat Mihai-Robert 
+Grupa 313CB 
+
+Tema 3 PC - Captcha
+-------------------
+
+Pentru implementarea temei am folosit pe langa structura unui bmp asa cum este descrisa in headerul bmp_header.h,si trei structuri ajutatoare : Pixel,in care retin cele trei culori folosite : albastru,verde si rosu,BMP,in care ma folosesc de bmp_fileheader si bmp_infoheader,dar si de o matrice de tip Pixel,iar ultima structura folosita este Digit in care memorez la pozitia
+(line,column) valoarea value.In ceea ce priveste cifrele,am ales sa le stochez intr-un vector de 
+matrici de dimensiuni 7x7(am bordat cifra propriu-zisa de dimensiune 5x5 cu 2 linii si 2 coloane cu valoarea 0).
+
+Functiile pe care le-am implementat pentru rezolvarea acestei teme sunt : 
+
+1)BMP readBMP (char *fileName),o functie de tip BMP in care citesc imaginea in format binar,aloc dinamic matricea de pixeli asociata 
+acesteia si bordez in acelasi timp cifra pentru task-ul 2.
+2)void writeBMP (BMP * bmp, char *fileName) in care pur si simplu afisez imaginea binara cu header si infoheader,dar rasturnata si 
+pun 0 pe octetii de padding.
+3)int isWhite(Pixel p) prin care testez daca am pixelul alb.
+4)BMP task1 (BMP * picture, Pixel pixel),o functie de tip BMP cu ajutorul careia rezolv task-ul 1.
+Daca nu am pixel alb atunci,pe masura ce parcurg matricea de pixeli,inseamna ca pot sa ii schimb valoarea cu noul pixel citit.
+5)char *task2 (BMP * picture, char* output),o functie prin care rezolv task-ul 2.Ideea de baza este ca eu parcurg imaginea binara si 
+pe masura ce gasesc in matricea de pixeli asociata pentru o cifra din vectorul de matrici (pattern-uri) digitMasks,incrementez numarul 
+de potriviri.Cand am facut match pe toate cifrele din imagine(am obtinut valoarea 49),inseamna ca pot sa convertesc cifrele si sa le 
+adaug in output.
+6)BMP task3 (BMP * picture, int *isErased),o functie de tip BMP,prin intermediul careia rezolv task-ul 3.Mai intai ii fac o copie 
+imaginii initiale pe care o fac alba.Apoi vad ce valori imi trebuiesc si le retin in vectorul de output,iar daca nu,le fac albe.
+
